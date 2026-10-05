@@ -1,0 +1,315 @@
+/* ====================================================================
+   ROBOT AVATAR & GESTURE STYLES — CYBERNETIC ANIMATIONS
+   ==================================================================== */
+
+.robot-avatar-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.robot-avatar-container.interactive {
+  cursor: pointer;
+}
+
+.robot-avatar-container.interactive:hover {
+  transform: scale(1.08);
+}
+
+/* Sizes */
+.robot-avatar-container.size-sm {
+  width: 48px;
+  height: 54px;
+}
+
+.robot-avatar-container.size-md {
+  width: 84px;
+  height: 94px;
+}
+
+.robot-avatar-container.size-lg {
+  width: 130px;
+  height: 146px;
+}
+
+.robot-avatar-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: robot-hover-bob 3s ease-in-out infinite;
+}
+
+/* ─── BASE LEVITATION & THRUSTER ─── */
+@keyframes robot-hover-bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.thruster-flame {
+  animation: thruster-flicker 0.4s alternate infinite ease-in-out;
+  transform-origin: 80px 152px;
+}
+
+@keyframes thruster-flicker {
+  0% {
+    transform: scaleY(0.85) scaleX(0.9);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scaleY(1.25) scaleX(1.1);
+    opacity: 1;
+  }
+}
+
+/* ─── CORE REACTOR PULSE ─── */
+.core-pulse {
+  animation: core-glow 2s infinite ease-in-out;
+}
+
+@keyframes core-glow {
+  0%, 100% {
+    r: 5;
+    opacity: 0.8;
+  }
+  50% {
+    r: 7;
+    opacity: 1;
+    filter: drop-shadow(0 0 6px #00f5ff);
+  }
+}
+
+.core-ring {
+  animation: ring-rotate 4s linear infinite;
+  transform-origin: 80px 115px;
+}
+
+@keyframes ring-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ─── ANTENNA ORB & WAVE RINGS ─── */
+.antenna-ring {
+  animation: antenna-pulse 2s infinite ease-out;
+  transform-origin: 80px 16px;
+}
+
+@keyframes antenna-pulse {
+  0% {
+    r: 5;
+    opacity: 0.8;
+  }
+  100% {
+    r: 16;
+    opacity: 0;
+  }
+}
+
+/* ─── BLINKING EYES ─── */
+.robot-eye {
+  animation: natural-blink 4s infinite;
+  transform-origin: center;
+}
+
+@keyframes natural-blink {
+  0%, 94%, 98%, 100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.1);
+  }
+}
+
+/* ─── GESTURE 1: WAVE 👋 ─── */
+.gesture-wave .robot-arm-right {
+  transform-origin: 110px 104px;
+  animation: robot-wave-motion 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes robot-wave-motion {
+  0% {
+    transform: rotate(-105deg);
+  }
+  100% {
+    transform: rotate(-65deg);
+  }
+}
+
+.gesture-wave .robot-head {
+  transform-origin: 80px 90px;
+  animation: wave-head-tilt 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes wave-head-tilt {
+  0% { transform: rotate(-4deg); }
+  100% { transform: rotate(4deg); }
+}
+
+/* ─── GESTURE 2: THINK 🤔 ─── */
+.gesture-think .robot-head {
+  transform-origin: 80px 90px;
+  transform: rotate(-9deg) translateY(-2px);
+  transition: transform 0.4s ease;
+}
+
+.gesture-think .robot-arm-right {
+  transform-origin: 110px 104px;
+  transform: rotate(-60deg) translate(-10px, -15px);
+  transition: transform 0.4s ease;
+}
+
+.think-hologram {
+  animation: float-think-bubble 2s ease-in-out infinite alternate;
+}
+
+@keyframes float-think-bubble {
+  0% { transform: translateY(0); opacity: 0.8; }
+  100% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* ─── GESTURE 3: POINT 👉 ─── */
+.gesture-point .robot-arm-left {
+  transform-origin: 50px 104px;
+  transform: rotate(-68deg) translate(-14px, -6px);
+  transition: transform 0.3s ease;
+}
+
+.point-laser-line {
+  animation: laser-dash 0.6s linear infinite;
+}
+
+@keyframes laser-dash {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+.gesture-point .robot-head {
+  transform-origin: 80px 90px;
+  transform: rotate(-6deg);
+}
+
+/* ─── GESTURE 4: SCAN 🔍 ─── */
+.scan-sweep-line {
+  animation: scan-vertical 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes scan-vertical {
+  0% {
+    y1: 65px;
+    y2: 65px;
+    opacity: 0.4;
+  }
+  100% {
+    y1: 170px;
+    y2: 170px;
+    opacity: 1;
+  }
+}
+
+.scan-cone {
+  animation: scan-flicker 0.25s infinite alternate;
+}
+
+@keyframes scan-flicker {
+  0% { opacity: 0.6; }
+  100% { opacity: 0.95; }
+}
+
+.scan-runner {
+  animation: scan-runner-slide 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes scan-runner-slide {
+  0% { transform: translateX(-16px); }
+  100% { transform: translateX(16px); }
+}
+
+.gesture-scan .robot-head {
+  animation: scan-head-pan 1.6s ease-in-out infinite alternate;
+  transform-origin: 80px 90px;
+}
+
+@keyframes scan-head-pan {
+  0% { transform: rotate(-7deg); }
+  100% { transform: rotate(7deg); }
+}
+
+/* ─── GESTURE 5: CELEBRATE / DANCE 🎉 ─── */
+.gesture-celebrate .robot-avatar-svg {
+  animation: celebrate-bounce 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes celebrate-bounce {
+  0% { transform: translateY(2px) scale(0.98); }
+  100% { transform: translateY(-14px) scale(1.04); }
+}
+
+.gesture-celebrate .robot-arm-left {
+  transform-origin: 50px 104px;
+  animation: arm-cheer-left 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes arm-cheer-left {
+  0% { transform: rotate(-95deg); }
+  100% { transform: rotate(-125deg); }
+}
+
+.gesture-celebrate .robot-arm-right {
+  transform-origin: 110px 104px;
+  animation: arm-cheer-right 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes arm-cheer-right {
+  0% { transform: rotate(-95deg); }
+  100% { transform: rotate(-125deg); }
+}
+
+.celebrate-sparkles .sparkle {
+  animation: sparkle-pulse 0.8s infinite alternate ease-in-out;
+}
+
+.sp-1 { animation-delay: 0.1s; }
+.sp-2 { animation-delay: 0.3s; }
+.sp-3 { animation-delay: 0.5s; }
+.sp-4 { animation-delay: 0.2s; }
+.sp-5 { animation-delay: 0.4s; }
+
+@keyframes sparkle-pulse {
+  0% { transform: scale(0.5); opacity: 0.3; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+/* ─── GESTURE 6: SPEAK 🗣️ (Equalizer) ─── */
+.gesture-speak .robot-head {
+  animation: speak-nod 0.4s ease-in-out infinite alternate;
+  transform-origin: 80px 90px;
+}
+
+@keyframes speak-nod {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-2px); }
+}
+
+.eq-bar {
+  animation: eq-bounce 0.35s infinite alternate ease-in-out;
+  transform-origin: bottom;
+}
+
+.bar-1 { animation-delay: 0.05s; }
+.bar-2 { animation-delay: 0.15s; }
+.bar-3 { animation-delay: 0.25s; }
+.bar-4 { animation-delay: 0.1s; }
+.bar-5 { animation-delay: 0.2s; }
+
+@keyframes eq-bounce {
+  0% { height: 2px; y: 75px; }
+  100% { height: 8px; y: 70px; }
+}
